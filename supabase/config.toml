@@ -1,0 +1,70 @@
+project_id = "jowuhdfznveuopeqwzzd"
+
+[functions.prerender-proxy]
+verify_jwt = false
+
+[functions.upload-to-cloudflare-stream]
+verify_jwt = true
+
+[functions.get-cloudflare-stream-url]
+verify_jwt = true
+
+[functions.midtrans-webhook]
+verify_jwt = false
+
+[functions.event-payment-webhook]
+verify_jwt = false
+
+[functions.create-event-payment]
+verify_jwt = true
+
+[functions.expire-event-payments]
+verify_jwt = false
+
+[functions.manage-midtrans-subscription]
+verify_jwt = true
+
+[functions.send-push-notification]
+verify_jwt = true
+
+[functions.send-bulk-email]
+verify_jwt = true
+
+[functions.process-email-jobs]
+verify_jwt = false
+
+[functions.upload-to-r2]
+verify_jwt = true
+
+[functions.get-r2-url]
+verify_jwt = true
+
+[functions.generate-r2-presigned-url]
+verify_jwt = true
+
+[functions.upload-r2-peaks]
+verify_jwt = true
+
+[functions.get-sequencer-tracks]
+verify_jwt = true
+
+[functions.admin-review-publication]
+verify_jwt = false
+
+[functions.get-admin-publications]
+verify_jwt = false
+
+[functions.validate-song-publication]
+verify_jwt = false
+
+[functions.delete-user-account]
+verify_jwt = false
+
+[functions.detect-library-fraud]
+verify_jwt = false
+
+[functions.analyze-chord-image]
+verify_jwt = false
+
+[functions.convert-youtube-audio]
+verify_jwt = false

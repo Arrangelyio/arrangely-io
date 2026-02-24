@@ -1,0 +1,41 @@
+name: Deploy to Production
+
+on:
+  push:
+    branches:
+      - production
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install Bun
+        run: |
+          curl -fsSL https://bun.sh/install | bash
+          echo "${HOME}/.bun/bin" >> $GITHUB_PATH
+      - name: Install dependencies with Bun
+        run: bun install
+
+      - name: Build project with Bun
+        run: bun run build
+        
+      - name: Clean up unwanted prefixes
+        run: |
+          echo "🔍 Checking and cleaning unwanted prefixes before FaceMesh/Hands..."
+          find dist/assets -type f -name "*.js" | while read file; do
+            sed -E -i 's/[A-Za-z]*\.(FaceMesh|Hands)/\1/g' "$file"
+          done
+          echo "✅ Cleanup done."
+
+      - name: Deploy to Hostinger via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ftp.arrangely.io
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: dist/
+          server-dir: /

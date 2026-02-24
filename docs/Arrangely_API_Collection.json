@@ -1,0 +1,578 @@
+{
+  "info": {
+    "name": "Arrangely API Collection",
+    "description": "Complete API documentation for Arrangely - powered chord and lyrics arrangement platform",
+    "version": "1.0.0",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{auth_token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "https://tmseyrcoxbwhztvvivgl.supabase.co/functions/v1",
+      "type": "string"
+    },
+    {
+      "key": "auth_token",
+      "value": "your_supabase_auth_token_here",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Audio Analysis",
+      "item": [
+        {
+          "name": "Analyze MP3 Audio",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"audioData\": \"base64_encoded_audio_data\",\n  \"fileName\": \"song.mp3\",\n  \"fileSize\": 5242880,\n  \"mimeType\": \"audio/mpeg\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/analyze-mp3-audio",
+              "host": ["{{base_url}}"],
+              "path": ["analyze-mp3-audio"]
+            },
+            "description": "Analyzes MP3 audio files to extract musical information including chords, key, tempo, and song structure using advanced AI processing."
+          },
+          "response": [
+            {
+              "name": "Successful Analysis",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"audioData\": \"base64_encoded_audio_data\",\n  \"fileName\": \"song.mp3\",\n  \"fileSize\": 5242880,\n  \"mimeType\": \"audio/mpeg\"\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/analyze-mp3-audio",
+                  "host": ["{{base_url}}"],
+                  "path": ["analyze-mp3-audio"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"title\": \"Amazing Grace\",\n  \"artist\": \"Traditional\",\n  \"key\": \"G Major\",\n  \"tempo\": 80,\n  \"duration\": \"4:32\",\n  \"structure\": [\n    {\n      \"section\": \"Verse 1\",\n      \"chords\": [\"G\", \"C\", \"G\", \"D\"],\n      \"lyrics\": \"Amazing grace how sweet the sound\\nThat saved a wretch like me\",\n      \"timestamp\": \"0:00-1:15\",\n      \"startTime\": 0,\n      \"endTime\": 75,\n      \"confidence\": 0.92\n    }\n  ],\n  \"confidence\": 89,\n  \"notes\": [\n    \"High-quality MP3 analysis with 89% confidence\",\n    \"Whisper transcription: Successful\",\n    \"Advanced audio features: 80 BPM in G Major\"\n  ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Analyze YouTube Audio",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"youtubeUrl\": \"https://www.youtube.com/watch?v=dQw4w9WgXcQ\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/analyze-youtube-audio",
+              "host": ["{{base_url}}"],
+              "path": ["analyze-youtube-audio"]
+            },
+            "description": "Analyzes YouTube videos to extract musical information including chords, lyrics, key, tempo, and song structure using AI processing and multiple data sources including Spotify and Genius."
+          },
+          "response": [
+            {
+              "name": "Successful Analysis",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"youtubeUrl\": \"https://www.youtube.com/watch?v=dQw4w9WgXcQ\"\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/analyze-youtube-audio",
+                  "host": ["{{base_url}}"],
+                  "path": ["analyze-youtube-audio"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"title\": \"Never Gonna Give You Up\",\n  \"artist\": \"Rick Astley\",\n  \"key\": \"F Major\",\n  \"tempo\": 113,\n  \"duration\": \"3:32\",\n  \"structure\": [\n    {\n      \"section\": \"Intro\",\n      \"chords\": [\"F\", \"Dm\", \"Bb\", \"C\"],\n      \"lyrics\": null,\n      \"timestamp\": \"0:00-0:22\",\n      \"startTime\": 0,\n      \"endTime\": 22,\n      \"confidence\": 0.85\n    },\n    {\n      \"section\": \"Verse 1\",\n      \"chords\": [\"F\", \"Dm\", \"Bb\", \"C\"],\n      \"lyrics\": \"We're no strangers to love\\nYou know the rules and so do I\",\n      \"timestamp\": \"0:22-1:05\",\n      \"startTime\": 22,\n      \"endTime\": 65,\n      \"confidence\": 0.92\n    }\n  ],\n  \"confidence\": 87,\n  \"notes\": [\n    \"Enhanced AI analysis with 87% confidence\",\n    \"Spotify audio features: Retrieved\",\n    \"Advanced chord progression analysis completed\"\n  ]\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Subscription Management",
+      "item": [
+        {
+          "name": "Check Subscription Status",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/check-subscription",
+              "host": ["{{base_url}}"],
+              "path": ["check-subscription"]
+            },
+            "description": "Checks the current user's subscription status, including active subscriptions, trial status, and payment history."
+          },
+          "response": [
+            {
+              "name": "Active Subscription",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{auth_token}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/check-subscription",
+                  "host": ["{{base_url}}"],
+                  "path": ["check-subscription"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"hasActiveSubscription\": true,\n  \"isTrialing\": false,\n  \"hasUsedTrial\": true,\n  \"canStartTrial\": false,\n  \"hasSuccessfulPayment\": true,\n  \"subscription\": {\n    \"id\": \"sub_123456\",\n    \"status\": \"active\",\n    \"plan_name\": \"Monthly Premium\",\n    \"current_period_end\": \"2024-02-25T00:00:00Z\"\n  }\n}"
+            },
+            {
+              "name": "Trial Available",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{auth_token}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/check-subscription",
+                  "host": ["{{base_url}}"],
+                  "path": ["check-subscription"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"hasActiveSubscription\": false,\n  \"isTrialing\": false,\n  \"hasUsedTrial\": false,\n  \"canStartTrial\": true,\n  \"hasSuccessfulPayment\": false,\n  \"subscription\": null\n}"
+            }
+          ]
+        },
+        {
+          "name": "Start Free Trial",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/start-free-trial",
+              "host": ["{{base_url}}"],
+              "path": ["start-free-trial"]
+            },
+            "description": "Starts a 7-day free trial for eligible users who haven't used a trial before."
+          },
+          "response": [
+            {
+              "name": "Trial Started",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{auth_token}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/start-free-trial",
+                  "host": ["{{base_url}}"],
+                  "path": ["start-free-trial"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"subscription\": {\n    \"id\": \"sub_trial_123\",\n    \"status\": \"trialing\",\n    \"is_trial\": true,\n    \"trial_start\": \"2024-01-25T00:00:00Z\",\n    \"trial_end\": \"2024-02-01T00:00:00Z\"\n  },\n  \"trial_end\": \"2024-02-01T00:00:00Z\",\n  \"message\": \"7-day free trial started successfully!\"\n}"
+            },
+            {
+              "name": "Trial Already Used",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{auth_token}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/start-free-trial",
+                  "host": ["{{base_url}}"],
+                  "path": ["start-free-trial"]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"User already has an active subscription or trial\",\n  \"subscription\": {\n    \"id\": \"sub_123\",\n    \"status\": \"active\"\n  }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Upgrade Subscription",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"newPlanId\": \"plan_yearly_premium\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/upgrade-subscription",
+              "host": ["{{base_url}}"],
+              "path": ["upgrade-subscription"]
+            },
+            "description": "Upgrades an existing subscription to a new plan with updated billing period and features."
+          },
+          "response": [
+            {
+              "name": "Upgrade Successful",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{auth_token}}"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"newPlanId\": \"plan_yearly_premium\"\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/upgrade-subscription",
+                  "host": ["{{base_url}}"],
+                  "path": ["upgrade-subscription"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"message\": \"Subscription upgraded successfully\",\n  \"subscription\": {\n    \"id\": \"sub_123456\",\n    \"plan_id\": \"plan_yearly_premium\",\n    \"status\": \"active\",\n    \"current_period_start\": \"2024-01-25T00:00:00Z\",\n    \"current_period_end\": \"2025-01-25T00:00:00Z\"\n  }\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Payment Processing",
+      "item": [
+        {
+          "name": "Create Midtrans Payment",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"planId\": \"plan_monthly_premium\",\n  \"discountCode\": \"SAVE20\",\n  \"customerDetails\": {\n    \"first_name\": \"John\",\n    \"last_name\": \"Doe\",\n    \"email\": \"john.doe@example.com\",\n    \"phone\": \"+6281234567890\"\n  }\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/create-midtrans-payment",
+              "host": ["{{base_url}}"],
+              "path": ["create-midtrans-payment"]
+            },
+            "description": "Creates a payment session with Midtrans for subscription plans or one-time payments. Supports discount codes and customer details."
+          },
+          "response": [
+            {
+              "name": "Payment Created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{auth_token}}"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"planId\": \"plan_monthly_premium\",\n  \"discountCode\": \"SAVE20\",\n  \"customerDetails\": {\n    \"first_name\": \"John\",\n    \"last_name\": \"Doe\",\n    \"email\": \"john.doe@example.com\",\n    \"phone\": \"+6281234567890\"\n  }\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/create-midtrans-payment",
+                  "host": ["{{base_url}}"],
+                  "path": ["create-midtrans-payment"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"token\": \"midtrans_snap_token_abc123\",\n  \"redirectUrl\": \"https://app.sandbox.midtrans.com/snap/v1/transactions/abc123/redirect\",\n  \"orderId\": \"ORDER_20240125_123456\",\n  \"amount\": 20000,\n  \"currency\": \"IDR\",\n  \"payment\": {\n    \"id\": \"pay_123456\",\n    \"status\": \"pending\",\n    \"midtrans_order_id\": \"ORDER_20240125_123456\"\n  }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Midtrans Webhook Handler",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"transaction_status\": \"settlement\",\n  \"order_id\": \"ORDER_20240125_123456\",\n  \"transaction_id\": \"txn_abc123\",\n  \"gross_amount\": \"25000.00\",\n  \"payment_type\": \"credit_card\",\n  \"transaction_time\": \"2024-01-25 10:30:00\",\n  \"signature_key\": \"midtrans_signature_hash\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/midtrans-webhook",
+              "host": ["{{base_url}}"],
+              "path": ["midtrans-webhook"]
+            },
+            "description": "Webhook endpoint for receiving payment notifications from Midtrans. Updates payment and subscription statuses based on transaction results. This endpoint does not require authentication as it's called by Midtrans servers."
+          },
+          "response": [
+            {
+              "name": "Webhook Processed",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"transaction_status\": \"settlement\",\n  \"order_id\": \"ORDER_20240125_123456\",\n  \"transaction_id\": \"txn_abc123\",\n  \"gross_amount\": \"25000.00\",\n  \"payment_type\": \"credit_card\",\n  \"transaction_time\": \"2024-01-25 10:30:00\",\n  \"signature_key\": \"midtrans_signature_hash\"\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/midtrans-webhook",
+                  "host": ["{{base_url}}"],
+                  "path": ["midtrans-webhook"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"message\": \"Webhook processed successfully\",\n  \"paymentStatus\": \"completed\",\n  \"subscriptionStatus\": \"active\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Process Auto-Renewals",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/process-auto-renewals",
+              "host": ["{{base_url}}"],
+              "path": ["process-auto-renewals"]
+            },
+            "description": "Processes automatic subscription renewals for subscriptions expiring within 24 hours. This is typically called by a scheduled job or cron task."
+          },
+          "response": [
+            {
+              "name": "Renewals Processed",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{auth_token}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/process-auto-renewals",
+                  "host": ["{{base_url}}"],
+                  "path": ["process-auto-renewals"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"message\": \"Auto-renewals processed\",\n  \"processed\": 5,\n  \"successful\": 4,\n  \"failed\": 1,\n  \"details\": [\n    {\n      \"subscriptionId\": \"sub_123\",\n      \"status\": \"success\",\n      \"orderId\": \"ORDER_RENEWAL_456\"\n    },\n    {\n      \"subscriptionId\": \"sub_124\",\n      \"status\": \"failed\",\n      \"error\": \"Payment method declined\"\n    }\n  ]\n}"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "// Set environment-specific base URL",
+          "if (pm.environment.get('environment') === 'production') {",
+          "    pm.globals.set('base_url', 'https://tmseyrcoxbwhztvvivgl.supabase.co/functions/v1');",
+          "} else {",
+          "    pm.globals.set('base_url', 'https://tmseyrcoxbwhztvvivgl.supabase.co/functions/v1');",
+          "}"
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "// Global test to check response time",
+          "pm.test('Response time is less than 30 seconds', function () {",
+          "    pm.expect(pm.response.responseTime).to.be.below(30000);",
+          "});",
+          "",
+          "// Global test to check for CORS headers",
+          "pm.test('Response has CORS headers', function () {",
+          "    pm.expect(pm.response.headers.get('Access-Control-Allow-Origin')).to.exist;",
+          "});",
+          "",
+          "// Log response for debugging",
+          "",
+          ""
+        ]
+      }
+    }
+  ]
+}

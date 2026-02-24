@@ -1,0 +1,60 @@
+{
+  "name": "arrangely-desktop",
+  "version": "1.0.0",
+  "description": "Arrangely Desktop DAW Player",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder",
+    "build:win": "electron-builder --win",
+    "build:mac": "electron-builder --mac",
+    "dev": "concurrently \"npm run dev:ui\" \"wait-on http://localhost:5174 && electron .\"",
+    "dev:ui": "cd ui && vite",
+    "build:mac:signed": "APPLE_ID= APPLE_APP_SPECIFIC_PASSWORD= APPLE_TEAM_ID= electron-builder --mac",
+    "notarize:dmg": "node build/notarize-dmg.js",
+    "release:mac": "npm run build:mac:signed && npm run notarize:dmg"
+  },
+  "build": {
+    "appId": "com.arrangely.desktop",
+    "productName": "Arrangely Desktop",
+    "afterSign": "build/notarize.js",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "ui/dist/**/*",
+      "secureKeyStore.js"
+    ],
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "icon": "assets/icon.ico"
+    },
+    "mac": {
+      "target": [
+        "dmg"
+      ],
+      "icon": "assets/icon.icns",
+      "category": "public.app-category.music",
+      "hardenedRuntime": true,
+      "gatekeeperAssess": false,
+      "entitlements": "build/entitlements.mac.plist",
+      "entitlementsInherit": "build/entitlements.mac.plist"
+    }
+  },
+  "devDependencies": {
+    "@electron/notarize": "^3.1.1",
+    "concurrently": "^8.2.2",
+    "electron": "^28.1.0",
+    "electron-builder": "^24.13.3",
+    "wait-on": "^7.2.0"
+  },
+  "dependencies": {
+    "@soundtouchjs/audio-worklet": "^0.2.1",
+    "@supabase/supabase-js": "^2.38.4",
+    "soundtouchjs": "^0.2.1"
+  }
+}

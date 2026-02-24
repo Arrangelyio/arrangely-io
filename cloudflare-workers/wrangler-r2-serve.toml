@@ -1,0 +1,20 @@
+# Wrangler configuration for R2 Serve Worker
+# Deploy with: wrangler deploy --config wrangler-r2-serve.toml
+
+name = "r2-serve-worker"
+main = "r2-serve-worker.js"
+compatibility_date = "2024-01-01"
+
+# Routes - configure these to match your domain
+# routes = [
+#   { pattern = "sequencer.arrangely.io/*", zone_name = "arrangely.io" }
+# ]
+
+# R2 bucket binding
+[[r2_buckets]]
+binding = "R2_BUCKET"
+bucket_name = "sequencer-tracks"
+
+# Optional: Enable logging
+# [observability]
+# enabled = true

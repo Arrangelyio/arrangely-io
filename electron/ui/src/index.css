@@ -1,0 +1,439 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Logic Pro inspired color scheme - Professional DAW aesthetic */
+:root {
+  /* Core grays - warm gray tones like Logic Pro */
+  --background: 0 0% 14%;
+  --foreground: 0 0% 90%;
+  
+  /* Primary accent - subtle green for active states */
+  --primary: 145 65% 42%;
+  --primary-foreground: 0 0% 100%;
+  
+  /* Secondary - slightly lighter gray for cards/surfaces */
+  --secondary: 0 0% 18%;
+  --secondary-foreground: 0 0% 85%;
+  
+  /* Accent - warm orange for highlights */
+  --accent: 28 90% 55%;
+  --accent-foreground: 0 0% 10%;
+  
+  /* Muted - darker gray for backgrounds */
+  --muted: 0 0% 16%;
+  --muted-foreground: 0 0% 55%;
+  
+  /* Border - subtle separation */
+  --border: 0 0% 22%;
+  
+  /* Track colors - professional DAW palette */
+  --track-waveform: 145 60% 50%;
+  --track-waveform-dim: 0 0% 45%;
+  --playhead: 0 70% 55%;
+  --meter-green: 145 70% 45%;
+  --meter-yellow: 48 95% 50%;
+  --meter-red: 0 70% 55%;
+  
+  /* Button states */
+  --btn-solo: 48 85% 55%;
+  --btn-mute: 0 65% 50%;
+  --btn-record: 0 75% 55%;
+
+  /* Animation timing */
+  --transition-fast: 150ms;
+  --transition-normal: 200ms;
+  --transition-slow: 300ms;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 
+    'Helvetica Neue', 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
+  background: hsl(var(--background));
+}
+
+/* ============================================
+   ANIMATION KEYFRAMES
+   ============================================ */
+
+/* Page transition - fade in with subtle slide */
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Staggered item entrance */
+@keyframes item-enter {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Vinyl disc staggered rotation entrance */
+@keyframes vinyl-disc-enter {
+  0% {
+    opacity: 0;
+    transform: scale(0.6) rotate(-180deg);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.05) rotate(15deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+/* Card hover lift */
+@keyframes card-lift {
+  from {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
+  to {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  }
+}
+
+/* Subtle pulse for active elements */
+@keyframes subtle-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.85; }
+}
+
+/* Scale bounce for buttons */
+@keyframes scale-bounce {
+  0% { transform: scale(1); }
+  50% { transform: scale(0.95); }
+  100% { transform: scale(1); }
+}
+
+/* Glow effect */
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 hsl(var(--primary) / 0); }
+  50% { box-shadow: 0 0 12px 2px hsl(var(--primary) / 0.3); }
+}
+
+/* Shimmer loading effect */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Modal entrance */
+@keyframes modal-enter {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Backdrop fade */
+@keyframes backdrop-enter {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Sidebar icon bounce */
+@keyframes icon-bounce {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+
+/* Vinyl spin for thumbnails */
+@keyframes vinyl-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ============================================
+   ANIMATION UTILITY CLASSES
+   ============================================ */
+
+/* Page transitions */
+.animate-page-enter {
+  animation: page-enter var(--transition-slow) var(--ease-out-expo) forwards;
+}
+
+/* Staggered list items */
+.animate-item-enter {
+  animation: item-enter var(--transition-normal) var(--ease-out-expo) forwards;
+  opacity: 0;
+}
+
+/* Stagger delays for list items */
+.stagger-1 { animation-delay: 30ms; }
+.stagger-2 { animation-delay: 60ms; }
+.stagger-3 { animation-delay: 90ms; }
+.stagger-4 { animation-delay: 120ms; }
+.stagger-5 { animation-delay: 150ms; }
+.stagger-6 { animation-delay: 180ms; }
+.stagger-7 { animation-delay: 210ms; }
+.stagger-8 { animation-delay: 240ms; }
+
+/* Modal animations */
+.animate-modal-enter {
+  animation: modal-enter var(--transition-slow) var(--ease-out-back) forwards;
+}
+
+.animate-backdrop-enter {
+  animation: backdrop-enter var(--transition-normal) ease-out forwards;
+}
+
+/* Card hover effect */
+.card-interactive {
+  transition: 
+    transform var(--transition-fast) var(--ease-out-expo),
+    box-shadow var(--transition-fast) var(--ease-out-expo),
+    border-color var(--transition-fast) ease-out,
+    background-color var(--transition-fast) ease-out;
+}
+
+.card-interactive:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.card-interactive:active {
+  transform: translateY(0);
+  transition-duration: 50ms;
+}
+
+/* Button micro-interaction */
+.btn-interactive {
+  transition: 
+    transform var(--transition-fast) var(--ease-spring),
+    background-color var(--transition-fast) ease-out,
+    border-color var(--transition-fast) ease-out,
+    box-shadow var(--transition-fast) ease-out;
+}
+
+.btn-interactive:hover {
+  transform: translateY(-1px);
+}
+
+.btn-interactive:active {
+  transform: translateY(0) scale(0.98);
+  transition-duration: 50ms;
+}
+
+/* Nav button with icon bounce */
+.nav-btn-interactive {
+  transition: 
+    background-color var(--transition-fast) ease-out,
+    color var(--transition-fast) ease-out;
+}
+
+.nav-btn-interactive:hover .nav-icon {
+  animation: icon-bounce 400ms var(--ease-spring);
+}
+
+/* Vinyl hover spin */
+.vinyl-hover:hover {
+  animation: vinyl-spin 3s linear infinite;
+}
+
+/* Glow on focus */
+.glow-focus:focus {
+  animation: glow-pulse 1.5s ease-in-out infinite;
+}
+
+/* Shimmer loading */
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    hsl(0 0% 18%) 0%,
+    hsl(0 0% 24%) 50%,
+    hsl(0 0% 18%) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+/* Smooth scrollbar appearance */
+.scroll-smooth {
+  scroll-behavior: smooth;
+}
+
+/* ============================================
+   EXISTING STYLES (Updated)
+   ============================================ */
+
+/* Custom scrollbar - Logic Pro style */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(0 0% 12%);
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(0 0% 30%);
+  border-radius: 3px;
+  transition: background var(--transition-fast) ease-out;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(0 0% 40%);
+}
+
+/* Logic Pro style button states */
+.btn-solo-active {
+  background: hsl(var(--btn-solo)) !important;
+  color: hsl(0 0% 10%) !important;
+  box-shadow: 0 0 8px hsl(var(--btn-solo) / 0.4);
+}
+
+.btn-mute-active {
+  background: hsl(var(--btn-mute)) !important;
+  color: white !important;
+  box-shadow: 0 0 8px hsl(var(--btn-mute) / 0.4);
+}
+
+.btn-record-active {
+  background: hsl(var(--btn-record)) !important;
+  color: white !important;
+  box-shadow: 0 0 12px hsl(var(--btn-record) / 0.5);
+  animation: record-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes record-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+/* Track strip styling */
+.track-strip {
+  background: linear-gradient(180deg, hsl(0 0% 20%) 0%, hsl(0 0% 16%) 100%);
+  border-bottom: 1px solid hsl(0 0% 12%);
+  transition: background var(--transition-fast) ease-out;
+}
+
+.track-strip:hover {
+  background: linear-gradient(180deg, hsl(0 0% 22%) 0%, hsl(0 0% 18%) 100%);
+}
+
+/* Waveform container */
+.waveform-container {
+  background: hsl(0 0% 12%);
+  border: 1px solid hsl(0 0% 8%);
+}
+
+/* Transport controls */
+.transport-btn {
+  background: hsl(0 0% 20%);
+  border: 1px solid hsl(0 0% 28%);
+  color: hsl(0 0% 70%);
+  transition: 
+    all var(--transition-fast) var(--ease-out-expo),
+    transform var(--transition-fast) var(--ease-spring);
+}
+
+.transport-btn:hover {
+  background: hsl(0 0% 25%);
+  border-color: hsl(0 0% 35%);
+  color: hsl(0 0% 90%);
+  transform: translateY(-1px);
+}
+
+.transport-btn:active {
+  background: hsl(0 0% 18%);
+  transform: translateY(0) scale(0.98);
+}
+
+.transport-btn-active {
+  background: hsl(var(--primary)) !important;
+  border-color: hsl(var(--primary)) !important;
+  color: white !important;
+}
+
+/* Slider/Range styling */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-track {
+  background: hsl(0 0% 25%);
+  height: 4px;
+  border-radius: 2px;
+  transition: background var(--transition-fast) ease-out;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  background: hsl(0 0% 70%);
+  border-radius: 50%;
+  margin-top: -4px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  transition: 
+    background var(--transition-fast) ease-out,
+    transform var(--transition-fast) var(--ease-spring);
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  background: hsl(0 0% 85%);
+  transform: scale(1.1);
+}
+
+input[type="range"]:active::-webkit-slider-thumb {
+  transform: scale(0.95);
+}
+
+/* Select styling */
+select {
+  background: hsl(0 0% 18%);
+  border: 1px solid hsl(0 0% 28%);
+  color: hsl(0 0% 80%);
+  border-radius: 4px;
+  transition: 
+    border-color var(--transition-fast) ease-out,
+    box-shadow var(--transition-fast) ease-out;
+}
+
+select:focus {
+  outline: none;
+  border-color: hsl(var(--primary));
+  box-shadow: 0 0 0 2px hsl(var(--primary) / 0.2);
+}
+
+/* Input focus glow */
+input:focus, textarea:focus {
+  box-shadow: 0 0 0 2px hsl(var(--primary) / 0.2);
+}
