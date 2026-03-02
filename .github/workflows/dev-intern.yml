@@ -17,5 +17,5 @@ jobs:
 
       - name: Push to development repo
         run: |
-          https://x-access-token:${{ secrets.DEV_REPO_TOKEN }}@github.com/Arrangelyio/chord-flow-worship-aid.git
+          git remote add dev https://x-access-token:${{ secrets.DEV_REPO_TOKEN }}@github.com/Arrangelyio/chord-flow-worship-aid.git
           git push dev main:development-intern
