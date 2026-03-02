@@ -1,0 +1,21 @@
+name: Mirror to Development Repo
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Push to development repo
+        run: |
+          https://x-access-token:${{ secrets.DEV_REPO_TOKEN }}@github.com/Arrangelyio/chord-flow-worship-aid.git
+          git push dev main:development-intern
